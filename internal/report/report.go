@@ -1,6 +1,10 @@
 package report
 
-import "github.com/Sina-Sahabi/sghostops/internal/rule"
+import (
+	"io"
+
+	"github.com/Sina-Sahabi/sghostops/internal/rule"
+)
 
 type Report struct {
 	TotalEntries     int              `json:"total_entries"`
@@ -9,4 +13,8 @@ type Report struct {
 	CountsByLevel    map[string]int   `json:"counts_by_severity"`
 	CountsByService  map[string]int   `json:"counts_by_service"`
 	Incidents        []rule.Incidents `json:"incidents"`
+}
+
+type Reporter interface {
+	Write(io.Writer, Report) error
 }
