@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type LogParser interface {
+type Parser interface {
 	Parse(entry any) (Entry, error)
 }
 

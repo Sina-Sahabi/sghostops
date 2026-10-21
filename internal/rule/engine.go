@@ -1,4 +1,4 @@
-package analyzer
+package rule
 
 import "github.com/Sina-Sahabi/sghostops/internal/log"
 
