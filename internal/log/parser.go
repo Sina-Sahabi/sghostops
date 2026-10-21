@@ -15,7 +15,11 @@ func NewTextParser() *TextParser {
 	return &TextParser{}
 }
 
-func (p *TextParser) Parse(line string) (Entry, error) {
+func (p *TextParser) Parse(rawline any) (Entry, error) {
+	line, ok := rawline.(string)
+	if !ok {
+		return Entry{}, ErrMalformedEntry
+	}
 	line = strings.TrimSpace(line)
 	if line == "" {
 		return Entry{}, ErrMalformedEntry

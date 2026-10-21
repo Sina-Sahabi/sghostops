@@ -34,16 +34,6 @@ type MatchConfig struct {
 }
 
 func ExtractPatterns(path string) ([]Pattern, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, fmt.Errorf("failed to read file: %w", err)
-	}
-
-	var cfg Config
-	if err := json.Unmarshal(data, &cfg); err != nil {
-		return nil, fmt.Errorf("failed to parse json: %w", err)
-	}
-
 	patterns := []Pattern{
 		// {
 		// 	ID:       "?",
@@ -54,6 +44,20 @@ func ExtractPatterns(path string) ([]Pattern, error) {
 		// 			strings.Contains(e.Message, "?")
 		// 	},
 		// }, ...
+	}
+
+	if path == "" {
+		return patterns, nil
+	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read file: %w", err)
+	}
+
+	var cfg Config
+	if err := json.Unmarshal(data, &cfg); err != nil {
+		return nil, fmt.Errorf("failed to parse json: %w", err)
 	}
 
 	for _, rc := range cfg.Rules {
