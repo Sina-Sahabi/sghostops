@@ -1,0 +1,111 @@
+{
+	"rules": [
+		{
+			"id": "P001",
+			"name": "Database Connection Pool Exhausted",
+			"priority": 10,
+			"match": {
+				"levels": ["FATAL"],
+				"contains": "database connection pool exhausted"
+			}
+		},
+		{
+			"id": "P002",
+			"name": "Database Connection Timeout",
+			"priority": 20,
+			"match": {
+				"levels": ["ERROR"],
+				"contains": "failed to connect to database"
+			}
+		},
+		{
+			"id": "P003",
+			"name": "SQL Syntax Error",
+			"priority": 30,
+			"match": {
+				"levels": ["ERROR"],
+				"contains": "sql syntax error"
+			}
+		},
+		{
+			"id": "P004",
+			"name": "Payment Gateway Timeout",
+			"priority": 40,
+			"match": {
+				"levels": ["ERROR"],
+				"contains": "payment gateway timeout"
+			}
+		},
+		{
+			"id": "P005",
+			"name": "Payment Gateway Bad Gateway (502)",
+			"priority": 50,
+			"match": {
+				"levels": ["ERROR"],
+				"contains": "payment gateway returned 502"
+			}
+		},
+		{
+			"id": "P006",
+			"name": "Unhandled NullPointerException",
+			"priority": 60,
+			"match": {
+				"levels": ["ERROR"],
+				"contains": "payment gateway returned 502"
+			}
+		},
+		{
+			"id": "P007",
+			"name": "General Database Error",
+			"priority": 70,
+			"match": {
+				"levels": ["ERROR", "FATAL"],
+				"contains": "database"
+			}
+		},
+		{
+			"id": "P008",
+			"name": "General Service Error",
+			"priority": 80,
+			"match": {
+				"levels": ["ERROR", "FATAL"]
+			}
+		},
+		{
+			"id": "P101",
+			"name": "Database Pool Utilization Threshold",
+			"priority": 90,
+			"match": {
+				"levels": ["WARN"],
+				"contains": "database connection pool reaching threshold"
+			}
+		},
+		{
+			"id": "P102",
+			"name": "High Memory Usage Warning",
+			"priority": 100,
+			"match": {
+				"levels": ["WARN"],
+				"contains": "high memory usage detected"
+			}
+		},
+		{
+			"id": "P103",
+			"name": "Client Rate Limit Approaching",
+			"priority": 110,
+			"match": {
+				"levels": ["WARN"],
+				"contains": "rate limit approaching"
+			}
+		},
+		{
+			"id": "P104",
+			"name": "Deprecated API Endpoint Access",
+			"priority": 120,
+			"match": {
+				"levels": ["WARN"],
+				"contains": "deprecated api endpoint"
+			}
+		}
+	]
+}
