@@ -3,7 +3,7 @@ package incident
 import (
 	"time"
 
-	"github.com/Sina-Sahabi/sghostops/internal/model/log"
+	"github.com/Sina-Sahabi/sghostops/internal/log"
 )
 
 type Incidents struct {

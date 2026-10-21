@@ -1,6 +1,6 @@
 package report
 
-import "github.com/Sina-Sahabi/sghostops/internal/model/incident"
+import "github.com/Sina-Sahabi/sghostops/internal/incident"
 
 type Report struct {
 	TotalEntries     int                  `json:"total_entries"`
