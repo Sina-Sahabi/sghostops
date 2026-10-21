@@ -1,4 +1,4 @@
-package incident
+package analyzer
 
 import (
 	"time"

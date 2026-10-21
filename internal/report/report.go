@@ -1,6 +1,6 @@
 package report
 
-import "github.com/Sina-Sahabi/sghostops/internal/incident"
+import "github.com/Sina-Sahabi/sghostops/internal/analyzer"
 
 type Report struct {
 	TotalEntries     int                  `json:"total_entries"`
@@ -8,5 +8,5 @@ type Report struct {
 	MalformedEntries int                  `json:"malformed_entries"`
 	CountsByLevel    map[string]int       `json:"counts_by_severity"`
 	CountsByService  map[string]int       `json:"counts_by_service"`
-	Incidents        []incident.Incidents `json:"incidents"`
+	Incidents        []analyzer.Incidents `json:"incidents"`
 }
