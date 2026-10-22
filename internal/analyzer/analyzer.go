@@ -49,11 +49,11 @@ func (a *Analyzer) AnalyzeStream(r io.Reader, f func(log.Entry) bool) (rpt.Repor
 			report.MalformedEntries++
 			continue
 		}
+		report.ValidEntries++
+		report.CountsByLevel[string(entry.Level)]++
+		report.CountsByService[entry.Service]++
 
-		if pattern, matched := a.engine.Evaluate(entry); !matched && f(entry) {
-			report.ValidEntries++
-			report.CountsByLevel[string(entry.Level)]++
-			report.CountsByService[entry.Service]++
+		if pattern, matched := a.engine.Evaluate(entry); matched && f(entry) {
 
 			if group, exists := incidentMap[pattern.ID]; exists {
 				group.Count++

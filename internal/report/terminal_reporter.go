@@ -19,9 +19,9 @@ func NewTerminalReporter() *TerminalReporter {
 }
 
 func (tr *TerminalReporter) Write(w io.Writer, rep Report) error {
-	fmt.Fprintf(w, "%s\n", strings.Repeat("=", 82))
-	fmt.Fprintf(w, "%sGHOSTOPS LOG ANALYSIS REPORT%s\n", strings.Repeat("=", 26), strings.Repeat("=", 26))
-	fmt.Fprintf(w, "%s\n", strings.Repeat("=", 82))
+	fmt.Fprintf(w, "%s\n", strings.Repeat("=", 80))
+	fmt.Fprintf(w, "%s GHOSTOPS LOG ANALYSIS REPORT %s\n", strings.Repeat("=", 25), strings.Repeat("=", 25))
+	fmt.Fprintf(w, "%s\n", strings.Repeat("=", 80))
 
 	fmt.Fprintf(w, "1. OVERVIEW\n")
 	fmt.Fprintf(w, "-----------\n")

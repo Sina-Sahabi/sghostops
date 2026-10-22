@@ -1,6 +1,8 @@
 package rule
 
-import "github.com/Sina-Sahabi/sghostops/internal/log"
+import (
+	"github.com/Sina-Sahabi/sghostops/internal/log"
+)
 
 type Engine struct {
 	patterns []Pattern

@@ -68,7 +68,7 @@ func ExtractPatterns(path string) ([]Pattern, error) {
 				return false
 			}
 
-			if matchCfg.Contains != "" && !strings.Contains(e.Message, matchCfg.Contains) {
+			if matchCfg.Contains != "" && !strings.Contains(strings.ToLower(e.Message), strings.ToLower(matchCfg.Contains)) {
 				return false
 			}
 

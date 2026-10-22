@@ -24,19 +24,18 @@ func run(args []string) error {
 	fs := flag.NewFlagSet("ghostops", flag.ContinueOnError)
 	fs.SetOutput(os.Stderr)
 
-	var jsonOutPath, fileOutPath, logFilePath, timeLowerBound, timeUpperBound, severity, service, cfg string
+	var jsonOutPath, logFilePath, timeLowerBound, timeUpperBound, severity, service, cfg string
 
 	fs.StringVar(&jsonOutPath, "o", "", "optional - path to export report as JSON")
-	fs.StringVar(&fileOutPath, "w", "", "optional - path to export report as text file")
 	fs.StringVar(&timeLowerBound, "tlb", "", "optional - report the incidents after the specified time")
 	fs.StringVar(&timeUpperBound, "tub", "", "optional - report the incidents before the specified time")
-	fs.StringVar(&severity, "", "svt", "optional - report the incidents with the specified severity")
-	fs.StringVar(&service, "", "svc", "optional - report the incidents for the specified service")
-	fs.StringVar(&cfg, "", "cfg", "optional - report the incidents for the specified set of rules")
+	fs.StringVar(&severity, "svt", "", "optional - report the incidents with the specified severity")
+	fs.StringVar(&service, "svc", "", "optional - report the incidents for the specified service")
+	fs.StringVar(&cfg, "cfg", "", "optional - report the incidents for the specified set of rules")
 
 	fs.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [flags] <input-file>\n\nFlags:\n", os.Args[0])
-		flag.PrintDefaults()
+		fs.PrintDefaults()
 	}
 
 	if err := fs.Parse(args); err != nil {
@@ -112,16 +111,7 @@ func run(args []string) error {
 	}
 
 	termReporter := report.NewTerminalReporter()
-	humanOut := os.Stdout
-	if fileOutPath != "" {
-		var err error
-		humanOut, err = os.Create(logFilePath)
-		if err != nil {
-			return fmt.Errorf("failed to open human-readable output file %q: %w", fileOutPath, err)
-		}
-		defer inFile.Close()
-	}
-	if err := termReporter.Write(humanOut, rep); err != nil {
+	if err := termReporter.Write(os.Stdout, rep); err != nil {
 		return fmt.Errorf("failed to write human-readable report: %w", err)
 	}
 
